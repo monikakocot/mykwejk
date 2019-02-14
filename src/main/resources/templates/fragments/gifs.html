@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!---- KOD 5--->
+
+<div class="gifs container" th:fragment="gifs-list">
+    <div class="row">
+        <div th:each="gif : ${gifs}" class="col s12 l4">
+            <div class="row col s12">
+                <a th:href="@{'/gif/' + ${gif.name}}">
+                    <img th:src="${gif.getThymeleafFilePath()}" th:alt="${gif.name}" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---- KOD 5--->
+</body>
+</html>

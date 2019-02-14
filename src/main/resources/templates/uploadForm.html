@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" th:href="@{/favicon.png}" />
+
+    <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" th:href="@{/app.css}" />
+
+    <title>New Gif</title>
+</head>
+
+<!-- KOD 13 -->
+<body>
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="container">
+            <a th:href="@{/}" class="brand-logo">gif<span>.</span>lib</a>
+            <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a th:href="@{/}">Explore</a></li>
+                <li class="active"><a th:href="@{/categories}">Categories</a></li>
+                <li><a th:href="@{/favorites}">Favorites</a></li>
+            </ul>
+            <ul id="mobile-nav" class="side-nav">
+                <li><a th:href="@{/}">Explore</a></li>
+                <li class="active"><a th:href="@{/categories}">Categories</a></li>
+                <li><a th:href="@{/favorites}">Favorites</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div class="col s12">
+    <form method="POST" enctype="multipart/form-data" action="/upload">
+        <table>
+            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+        </table>
+    </form>
+</div>
+
+<div>
+    <h3>Download gifs:</h3>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file}" />
+        </li>
+    </ul>
+
+</div>
+
+<!-- KOD 14 - service to show give from filePath and to add Gif to List<Gif> -->
+<div th:if="${message}" class="gifs container">
+    <h1>Your uploaded gif:</h1>
+    <div class="row">
+        <!--<img th:src="${filepath}" th:alt="new" />-->
+        <!--<a th:href="${filepath}" th:text="ShowYourGif"/>-->
+
+        <div th:if="${newGif} != null" th:each="list : ${newGif}" class="col s12 l4">
+            <div class="row col s12">
+                <h3  th:text="${list.name}"></h3>
+                 <a th:href="@{'/gif/' + ${list.name}}">
+                 <img th:src="${list.getThymeleafFilePath()}" th:alt="newGif" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- KOD 14 -->
+
+<script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+<script th:src="@{/vendor/materialize/js/materialize.js}"></script>
+<script th:src="@{/app.js}"></script>
+
+</body>
+</html>
