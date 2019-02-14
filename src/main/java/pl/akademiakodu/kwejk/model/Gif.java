@@ -1,16 +1,13 @@
 package pl.akademiakodu.kwejk.model;
 
-
 import java.awt.*;
 
 public class Gif {
     private String name;
     private boolean favorite;
     private String username;
-
-//KOD 7
     private int categoryId;
-//KOD 7
+
 
     public Gif(String name,boolean favorite) {
         this.name = name;
@@ -62,8 +59,6 @@ public class Gif {
     public void setUsername(String username) {
         this.username = username;
     }
-
-//KOD 10
 
     public String getThymeleafFilePath(){
         return new StringBuilder("").append("/gifs/").append(getName()).append(".gif").toString();

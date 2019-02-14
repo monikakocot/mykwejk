@@ -23,7 +23,6 @@ public class Category {
 
     public Category() {}
 
-
     //GETTERS, SETTERS
     public int getId() {
         return id;
@@ -33,7 +32,6 @@ public class Category {
         this.id = nextId;
         nextId++;
     }
-
     public String getName() {
         return name;
     }

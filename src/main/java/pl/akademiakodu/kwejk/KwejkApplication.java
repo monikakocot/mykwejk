@@ -19,7 +19,6 @@ public class KwejkApplication {
 		SpringApplication.run(KwejkApplication.class, args);
 	}
 
-
 	@Bean
 	CommandLineRunner init(StorageService storageService) {
 		return (args) -> {

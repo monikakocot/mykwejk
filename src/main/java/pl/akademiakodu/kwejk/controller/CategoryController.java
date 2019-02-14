@@ -18,7 +18,7 @@ public class CategoryController {
     private CategoryRepository categoryRepository = new CategoryRepository();
     private GifRepository gifRepository= new GifRepository();
 
-//KOD12 - must added Category category for form
+
     @GetMapping("/categories")
     public String displayAll(ModelMap modelMap, Category category){
 
@@ -26,7 +26,6 @@ public class CategoryController {
         return "categories";
     }
 
-//KOD12
     @GetMapping("/newCategory")
     public String addNewCategory (Category category){
         return "form";
@@ -42,18 +41,14 @@ public class CategoryController {
 
         return "categories";
     }
-//KOD12
 
-    //KOD 7
     @GetMapping("/category/{id}")
     public String displayCategory(@PathVariable int id, ModelMap modelMap){
         modelMap.addAttribute("category",categoryRepository.findByCategory(id));
         modelMap.addAttribute("gifs",gifRepository.findByCategoryId(id));
         return "category";
     }
-//KOD 7
 
-    //KOD 9
     @GetMapping("/categories/search")
     public String searchCategory (@RequestParam String q,ModelMap modelMap, Category category){
         List<Category> categoryList = categoryRepository.findCategoriesByNameIgnoreCase(q);
@@ -63,7 +58,7 @@ public class CategoryController {
             modelMap.addAttribute("categories", categoryList);
         return "categories";
     }
-//KOD 9
+
 }
 
 

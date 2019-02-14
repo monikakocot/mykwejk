@@ -21,23 +21,16 @@ public class CategoryRepository {
         return ALL_CATEGORIES;
     }
 
-//KOD 7
     public Category findByCategory(int categoryId){
         return ALL_CATEGORIES.stream().filter(category -> category.getId()==categoryId).collect(Collectors.toList()).get(0);
     }
-//KOD 7
-
-//KOD 9
     public List<Category> findCategoriesByNameIgnoreCase(String name){
         return ALL_CATEGORIES.stream().filter(category->category.getName().toLowerCase()
                 .contains(name.toLowerCase()))
                 .collect(Collectors.toList());
     }
-//KOD9
-
-//KOD10
     public void addNewCategory (Category newCategory){
         ALL_CATEGORIES.add(newCategory);
     }
-//KOD10
+
 }

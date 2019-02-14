@@ -1,6 +1,5 @@
 package pl.akademiakodu.kwejk.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +18,6 @@ import sun.net.www.content.image.gif;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Controller
 public class GifController {
 
@@ -29,34 +27,29 @@ public class GifController {
     @Autowired
     GifListService gifListService;
 
-
-//KOD 2
     @GetMapping("/")
     public String hello(ModelMap modelMap){
         modelMap.addAttribute("gifs", gifRepository.findAll());
-// KOD 14 - service to shwo give from filePath and to add Gif to List<Gif>
+//service to show give from filePath and to add Gif to List<Gif>
         modelMap.addAttribute("newGif",gifListService.getGifsFromList());
-// KOD 14 - service to show gif from filePath and to add Gif to List<Gif>
+//service to show gif from filePath and to add Gif to List<Gif>
         return "home";
     }
-// KOD 2
 
-/*// KOD 1 - showing one gif
+/*//showing one gif
      @GetMapping("/exampleGif")
      public String hello(ModelMap modelMap){
      modelMap.addAttribute("gif", new Gif("compiler-bot"));
      modelMap.addAttribute("gif", new Gif("compiler-bot").getThymeleafFilePath()); // wtedy w home sam 'gif'
      return "home";
      }
-// KOD 0
+
     @GetMapping("/easyExampleGif")
     public String easy (){
         return "home";
     }
-// KOD 0
-//KOD 1*/
+*/
 
-    // KOD 4
     @GetMapping("/gif/{name}")
     public String displayGif (@PathVariable String name, ModelMap modelMap) {
 
@@ -70,9 +63,7 @@ public class GifController {
 */
         return "gif-details";
     }
-//KOD 4
 
-    // KOD 3
     @GetMapping("/favorites")
 
     public String getFavorites (ModelMap modelmap){
@@ -80,9 +71,7 @@ public class GifController {
         modelmap.addAttribute("gifs",gifRepository.findFavorites());
         return "favorites";
     }
-//KOD 3
 
-    //KOD 8
     @GetMapping("/gifs/search")
     public String searchGif (@RequestParam String q,ModelMap modelMap){
 
@@ -93,9 +82,7 @@ public class GifController {
             modelMap.addAttribute("gifs",gifsList);
         return "home";
     }
-//KOD 8
 
-//KOD 17
     @GetMapping("/search")
     public String searchGifOrCategory (@RequestParam String q,ModelMap modelMap, Category category){
 
@@ -113,9 +100,7 @@ public class GifController {
             return "categories";
         }
         return "home";
-}
-
-//KOD 17
+    }
 
 }
 

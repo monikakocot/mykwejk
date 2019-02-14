@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="icon" th:href="@{icons/favicon.png}" /> <!-- IKONKA GWIAZDKI - przy Gifach favourite -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> <!-- IKONKA lupy -->
@@ -20,146 +21,131 @@
 
     <title>giflib | Home</title>
 </head>
+
 <body>
-    <div class="navbar-fixed">
-<!--The <div> tag defines a division or a section in an HTML document.
+<div class="navbar-fixed">
+    <!--The <div> tag defines a division or a section in an HTML document.
 The <div> element is often used as a container for other HTML elements to style them with CSS or to perform certain tasks with JavaScript -->
-        <nav>
-<!--The <nav> tag defines a set of navigation links.
- Notice that NOT all links of a document should be inside a <nav> element. The <nav> element is intended only for major
+    <nav>
+        <!--The <nav> tag defines a set of navigation links.
+Notice that NOT all links of a document should be inside a <nav> element. The <nav> element is intended only for major
 block of navigation links. -->
-            <div class="container">
-                <a th:href="@{/}" class="brand-logo">gif<span>.</span>lib</a>
-                <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
-                <ul id="mobile-nav" class="side-nav">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="search-bar container">
-        <div class="row">
-            <div class="col s12">
+        <div class="container">
+            <a th:href="@{/}" class="brand-logo">gif<span>.</span>lib</a>
+            <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li class="active"><a th:href="@{/}">Explore</a></li>
+                <li><a th:href="@{/categories}">Categories</a></li>
+                <li><a th:href="@{/favorites}">Favorites</a></li>
+            </ul>
+            <ul id="mobile-nav" class="side-nav">
+                <li class="active"><a th:href="@{/}">Explore</a></li>
+                <li><a th:href="@{/categories}">Categories</a></li>
+                <li><a th:href="@{/favorites}">Favorites</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="search-bar container">
+    <div class="row">
 
-                <!-- KOD 8-->
-                <form action="/gifs/search" method="get" >
-                    <!-- KOD 8-->
-                    <div class="input-field">
-                        <input name="q" type="search" placeholder="Search gifs..." required="required" autocomplete="off"/>
-                        <i class="material-icons">search</i>
-                    </div>
-                </form>
-            </div>
+        <div class="col s12">
 
-            <div class="row">
-                <div class="col s12">
+            <form action="/gifs/search" method="get">
 
-                    <!-- KOD 8-->
-                    <form action="/categories/search" method="get" >
-                        <!-- KOD 8-->
-                        <div class="input-field">
-                            <input name="q" type="search" placeholder="Search category..." required="required" autocomplete="off"/>
-                            <i class="material-icons">search</i>
-                        </div>
-                    </form>
+                <div class="input-field">
+                    <input name="q" type="search" placeholder="Search gifs..." required="required" autocomplete="off" />
+                    <i class="material-icons">search</i>
                 </div>
-            </div>
-            <!-- KOD 17-->
-            <div class="row">
-                <div class="col s12">
-                    <form action="/search" method="get" >
-                        <div class="input-field">
-                            <input name="q" type="search" placeholder="Search gif or category..." required="required" autocomplete="off"/>
-                            <i class="material-icons">search</i>
-                        </div>
-                    </form>
+            </form>
+        </div>
+
+        <div class="col s12">
+
+
+            <form action="/categories/search" method="get">
+
+                <div class="input-field">
+                    <input name="q" type="search" placeholder="Search category..." required="required" autocomplete="off" />
+                    <i class="material-icons">search</i>
                 </div>
-            </div>
-            <!-- KOD 17-->
-         </div>
+            </form>
+        </div>
+
+
+        <div class="col s12">
+            <form action="/search" method="get">
+                <div class="input-field">
+                    <input name="q" type="search" placeholder="Search gif or category..." required="required"
+                           autocomplete="off" />
+                    <i class="material-icons">search</i>
+                </div>
+            </form>
+        </div>
+
     </div>
+</div>
 
-    <h3>Watch our funny gifs!</h3>
-    <!-- KOD 5 -->
-    <div th:replace="fragments/gifs :: gifs-list"></div>
-    <!-- KOD 5 -->
+<h3>Watch our funny gifs!</h3>
 
+<div th:replace="fragments/gifs :: gifs-list"></div>
 
-    <!-- KOD 14 - service to shwo give from filePath and to add Gif to List<Gif> -->
+<!-- service to shwo give from filePath and to add Gif to List<Gif> -->
 <div th:if="${newGif} != null" class="gifs container">
-        <h1>Your uploaded gifs:</h1>
-        <div class="row">
-            <div th:if="${newGif} != null" th:each="list : ${newGif}" class="col s12 l4">
-                <div class="row col s12">
-                    <a th:href="@{'/gif/' + ${list.name}}">
-                        <img th:src="${list.getThymeleafFilePath()}" th:alt="newGif" />
-                    </a>
-                </div>
+    <h1>Your uploaded gifs:</h1>
+    <div class="row">
+        <div th:if="${newGif} != null" th:each="list : ${newGif}" class="col s12 l4">
+            <div class="row col s12">
+                <a th:href="@{'/gif/' + ${list.name}}">
+                    <img th:src="${list.getThymeleafFilePath()}" th:alt="newGif" />
+                </a>
             </div>
         </div>
+    </div>
 </div>
-    <!--KOD 14 -->
 
-    <!-- KOD 13 -->
-    <h3><a th:href="@{/login}">Upload your own gif!</a></h3>
-    <!-- KOD 13 -->
+<h3><a th:href="@{/login}">Upload your own gif!</a></h3>
+<!---
+   cała klasa kontener ukryta. Robi za to część wspólna fragment w gifs
+    <div class="gifs container">
+        <div class="row">
 
-    <!---- KOD 4--->
-    <!--- KOD 5
-
-       cała klasa kontener ukryta. Robi za to część wspólna fragment w gifs
-        <div class="gifs container">
-            <div class="row">
-
-            <div th:each="gif : ${gifs}" class="col s12 l4">
-                <div class="row col s12">
-                    <a th:href="@{'/gif/' + ${gif.name}}">
-                        <img th:src="@{'/gifs/' + ${gif.name} + '.gif'}" alt="gif"/>
-                    </a>
-                </div>
+        <div th:each="gif : ${gifs}" class="col s12 l4">
+            <div class="row col s12">
+                <a th:href="@{'/gif/' + ${gif.name}}">
+                    <img th:src="@{'/gifs/' + ${gif.name} + '.gif'}" alt="gif"/>
+                </a>
             </div>
-
-    KOD 5 -->
-    <!---- KOD 4--->
-
-    <!---- KOD 2
+        </div>
+<!----
 <div class="gifs container">
 <div class="row">
-         <div th:each="gif : ${gifs}" class="col s12 l4">
-             <div class="row col s12">
-                 <img th:src="@{'/gifs/' + ${gif.name} + '.gif'}" alt="gif" />
+     <div th:each="gif : ${gifs}" class="col s12 l4">
+         <div class="row col s12">
+             <img th:src="@{'/gifs/' + ${gif.name} + '.gif'}" alt="gif" />
 
-                KOD 2--->
-    <!-- KOD1
-          <h1>Miejsce na wyświetlenie gifów:)</h1>
-           <h2> Tak to właśnie czaem bywa</h2>
-           <img th:src="${gif.getThymeleafFilePath()}" th:width="230px"/>
-           <img th:src="@{gifs/cowboy-coder.gif}" th:width="230px"/>
-        KOD1-->
+<!--
+      <h1>Miejsce na wyświetlenie gifów:)</h1>
+       <h2> Tak to właśnie czaem bywa</h2>
+       <img th:src="${gif.getThymeleafFilePath()}" th:width="230px"/>
+       <img th:src="@{gifs/cowboy-coder.gif}" th:width="230px"/>
 
-    <!-- KOD 5
-                </div>
+
+<!--
             </div>
         </div>
     </div>
+</div>
 
-    KOD 5 -->
-
-    <!--GENERALNIE NIE MAM POJECIA CO JS I jQuery wprowadza w nasz projekt -->
-    <!-- NIE WIEM SKĄD mamy jQuery -->
+<!--GENERALNIE NIE MAM POJECIA CO JS I jQuery wprowadza w nasz projekt -->
+<!-- NIE WIEM SKĄD mamy jQuery -->
 <script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
-    <!-- https://materializecss.com/ - framework z gotowymi themes -->
+<!-- https://materializecss.com/ - framework z gotowymi themes -->
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
-    <!-- nasze ustawienia JS-->
+<!-- nasze ustawienia JS-->
 <script th:src="@{/app.js}"></script>
-    <!--GENERALNIE NIE MAM POJECIA CO JS I jQuery wprowadza w nasz projekt -->
+<!--GENERALNIE NIE MAM POJECIA CO JS I jQuery wprowadza w nasz projekt -->
 
 </body>
+
 </html>

@@ -13,6 +13,10 @@ nav .brand-logo, nav ul li.active a {
     color: #fefefe;
 }
 
+nav .brand-logo {
+    left:15%;
+}
+
 nav ul li a {
     font-size: 1.1rem;
 }

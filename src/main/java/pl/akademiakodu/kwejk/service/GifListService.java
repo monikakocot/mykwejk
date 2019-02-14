@@ -19,7 +19,7 @@ czyli jak wejdziemy z innej przeglądarki, innego komputera to lista alertów je
 zastosowanie np. system logowania - stan na sesję zalogowania; koszyk  w sklepie.
 */
 
-// KOD 14 - service to show gif from filePath and to add Gif to List<Gif>
+//service to show gif from filePath and to add Gif to List<Gif>
 public class GifListService {
 
     public static List<Gif> gifList = new ArrayList<>();
@@ -28,7 +28,7 @@ public class GifListService {
 //        gifList = new ArrayList<>();
 //    }
 
-// KOD 15 - GifDetails for newGif
+//GifDetails for newGif
     public List<Gif>  addGifToServiceList (MultipartFile file){
         String gifName = file.getOriginalFilename();
         String gifNameCorrect = new StringBuilder(gifName).substring(0,gifName.length()-4);
@@ -42,8 +42,6 @@ public class GifListService {
         GifRepository.getAllGifs().add(new Gif(gifNameCorrect,false,"user",4));
         return GifRepository.getAllGifs();
     }
-
-//KOD15
     public  List<Gif> getGifsFromList() {
         return gifList;
     }
@@ -51,14 +49,11 @@ public class GifListService {
     public String buildGifFilePath(MultipartFile file) {
         //return new StringBuilder("").append("/gifs/").append(file.getOriginalFilename()).toString();
         return new StringBuilder("").append("/gifs2/").append(file.getOriginalFilename()).toString();
-
     }
-
-//KOD 14
     public String getThymeleafFilePathForNewGif(){
         return new StringBuilder("").append("/gifs2/").append(gifList.get(0).getName()).append(".gif").toString();
     }
-//KOD15
+
     public Optional<Gif> findByNameNew(String name){
 
         return gifList.stream().filter(p-> p.getName().equals(name)).findFirst();

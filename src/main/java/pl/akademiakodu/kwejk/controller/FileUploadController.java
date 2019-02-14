@@ -26,7 +26,6 @@ import pl.akademiakodu.kwejk.storage.StorageFileNotFoundException;
 import pl.akademiakodu.kwejk.storage.StorageService;
 
 
-// KOD 13 - uploading new file
 @Controller
 public class FileUploadController {
 
@@ -57,22 +56,21 @@ public class FileUploadController {
                                    RedirectAttributes redirectAttributes) {
 
         storageService.store(file);
-// KOD 14 - service to show give from filePath and to add Gif to List<Gif>
+//service to show give from filePath and to add Gif to List<Gif>
         gifListService.buildGifFilePath(file);
-// KOD 15 - GifDetails for newGif
+//GifDetails for newGif
         gifListService.addGifToServiceList(file);
         gifListService.addGifToList(file);
 
-// KOD 14 - service to show give from filePath and to add Gif to List<Gif>
+//service to show give from filePath and to add Gif to List<Gif>
 
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
-// KOD 14 - service to shwo give from filePath and to add Gif to List<Gif>
+//service to show give from filePath and to add Gif to List<Gif>
         redirectAttributes.addFlashAttribute("filepath",gifListService.buildGifFilePath(file));
         redirectAttributes.addFlashAttribute("newGif",gifListService.getGifsFromList());
-// KOD 14 - service to shwo give from filePath and to add Gif to List<Gif>
+// service to show give from filePath and to add Gif to List<Gif>
         return "redirect:/upload";
-
     }
 
     @GetMapping("/files/{filename:.+}")

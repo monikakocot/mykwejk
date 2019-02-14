@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="icon" th:href="@{/favicon.png}" />
 
@@ -12,6 +13,7 @@
 
     <title th:text="'giflib | ' + ${category.name}">Category</title>
 </head>
+
 <body>
 <div class="navbar-fixed">
     <nav>
@@ -36,7 +38,7 @@
         <div class="col s12">
             <form action="#" method="get">
                 <div class="input-field">
-                    <input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off"/>
+                    <input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off" />
                     <i class="material-icons">search</i>
                 </div>
             </form>
@@ -47,8 +49,8 @@
     <div class="chip" th:text="${category.name}">category name</div>
     <div class="row">
         <h1>Miejsce na wyświetlenie gifów</h1>
-<!-- KOD 7-->
-        <div class="gifs container"  th:fragment="gifs-list">
+
+        <div class="gifs container" th:fragment="gifs-list">
             <div class="row">
                 <div th:each="gif : ${gifs}" class="col s12 l4">
                     <div class="row col s12">
@@ -59,7 +61,6 @@
                 </div>
             </div>
         </div>
-<!-- KOD 7-->
 
     </div>
 </div>
@@ -68,4 +69,5 @@
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
 <script th:src="@{/app.js}"></script>
 </body>
+
 </html>

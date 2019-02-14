@@ -23,7 +23,6 @@ public class CategoryApiController {
         return categoryRepository.findCategoriesByNameIgnoreCase(name);
     }
 
-
 /*
     @GetMapping("api/categories/find")
     public List<Category> findByName(@RequestParam String name){

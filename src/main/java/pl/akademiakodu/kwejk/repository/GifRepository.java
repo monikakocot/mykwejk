@@ -40,25 +40,19 @@ public class GifRepository {
         return ALL_GIFS.stream().filter(p-> p.getName().equals(name)).findFirst();
     }
 
-//KOD 7
     public List<Gif> findByCategoryId( int categoryId){
         return ALL_GIFS.stream().filter(p->p.getCategoryId()==categoryId).collect(Collectors.toList());
     }
-//KOD 7
 
-//KOD 8
     public List<Gif> findAllByNameIgnoreCase (String name){
         return ALL_GIFS.stream().filter(p->p.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
-//KOD 8
-
-
 
     public static void setAllGifs(List<Gif> allGifs) {
         ALL_GIFS = allGifs;
     }
 
-/*// KOD 15 - GifDetails for newGif
+/*//GifDetails for newGif
 
     public List<Gif>  addGifToList (MultipartFile file){
         String gifName = file.getOriginalFilename();
@@ -68,8 +62,7 @@ public class GifRepository {
     }
 */
 
-//KOD 15 KOD 15 - GifDetails for newGif
-
+//GifDetails for newGif
 
 }
 
