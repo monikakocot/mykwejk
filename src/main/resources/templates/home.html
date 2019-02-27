@@ -14,8 +14,32 @@
     <link rel="stylesheet" th:href="@{/app.css}" />
 
     <style>
-        body{
-        text-align:center;
+        body {
+            text-align: center;
+        }
+
+        .git {
+            text-align: center;
+            margin: 0 auto;
+            position: fixed;
+            top: 90px;
+            right: 15px;
+        }
+
+        .git img {
+            height: 8vh;
+            width: 12vh;
+        }
+
+
+        .git p {
+            font-size: 12px;
+            font-family: 'Saira Condensed',
+                sans-serif;
+            text-transform: uppercase;
+            color: black;
+            text-align: center;
+            margin: 0;
         }
     </style>
 
@@ -105,6 +129,15 @@ block of navigation links. -->
 </div>
 
 <h3><a th:href="@{/login}">Upload your own gif!</a></h3>
+
+<a href="https://github.com/monikakocot/mykwejk">
+    <div class="git">
+        <div>
+            <img src="git.png" alt="github link">
+            <p>Check code on my GitHub</p>
+        </div>
+    </div>
+</a>
 <!---
    cała klasa kontener ukryta. Robi za to część wspólna fragment w gifs
     <div class="gifs container">
