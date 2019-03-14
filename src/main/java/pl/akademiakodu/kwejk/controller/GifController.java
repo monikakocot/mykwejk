@@ -14,6 +14,7 @@ import pl.akademiakodu.kwejk.model.Gif;
 import pl.akademiakodu.kwejk.repository.CategoryRepository;
 import pl.akademiakodu.kwejk.repository.GifRepository;
 import pl.akademiakodu.kwejk.service.GifListService;
+import pl.akademiakodu.kwejk.storage.FileSystemStorageService;
 import sun.net.www.content.image.gif;
 
 import java.util.List;
@@ -30,12 +31,16 @@ public class GifController {
     @Autowired
     GifListService gifListService;
 
+    @Autowired
+    FileSystemStorageService fileSystemStorageService;
+
     @GetMapping("/")
     public String hello(ModelMap modelMap){
         modelMap.addAttribute("gifs", gifRepository.findAll());
 //service to show give from filePath and to add Gif to List<Gif>
         modelMap.addAttribute("newGif",gifListService.getGifsFromList());
 //service to show gif from filePath and to add Gif to List<Gif>
+
         return "home";
     }
 
