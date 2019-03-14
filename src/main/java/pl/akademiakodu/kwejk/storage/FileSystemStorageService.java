@@ -10,14 +10,18 @@ import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+
 public class FileSystemStorageService implements StorageService{
 
     private final Path rootLocation;
@@ -95,7 +99,9 @@ public class FileSystemStorageService implements StorageService{
     @Override
     public void init() {
         try {
+            deleteAll();
             Files.createDirectories(rootLocation);
+
         }
         catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);

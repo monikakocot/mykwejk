@@ -7,6 +7,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.annotation.SessionScope;
 import pl.akademiakodu.kwejk.storage.StorageProperties;
 import pl.akademiakodu.kwejk.storage.StorageService;
 
@@ -20,9 +24,10 @@ public class KwejkApplication {
 	}
 
 	@Bean
+	//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	CommandLineRunner init(StorageService storageService) {
 		return (args) -> {
-			//storageService.deleteAll(); //zakomentowałam, żeby nie kasowało mi innych gifów, które mają być zawsze
+			storageService.deleteAll(); //zakomentowałam, żeby nie kasowało mi innych gifów, które mają być zawsze
 			storageService.init();
 			storageService.loadAll();
 		};

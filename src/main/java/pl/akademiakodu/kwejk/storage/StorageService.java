@@ -1,5 +1,7 @@
 package pl.akademiakodu.kwejk.storage;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.core.io.Resource;

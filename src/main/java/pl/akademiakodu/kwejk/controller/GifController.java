@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.SessionScope;
 import pl.akademiakodu.kwejk.model.Category;
 import pl.akademiakodu.kwejk.model.Gif;
 import pl.akademiakodu.kwejk.repository.CategoryRepository;
@@ -19,8 +20,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+
 public class GifController {
 
+    @Autowired
     private GifRepository gifRepository = new GifRepository();
     private CategoryRepository categoryRepository = new CategoryRepository();
 

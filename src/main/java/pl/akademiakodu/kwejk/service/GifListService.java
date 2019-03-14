@@ -3,6 +3,7 @@ package pl.akademiakodu.kwejk.service;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import pl.akademiakodu.kwejk.model.Gif;
 import pl.akademiakodu.kwejk.repository.GifRepository;
@@ -13,8 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-/*@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS) // zmiana  z singletonu na zasięg sesyjny
-czyli teraz Bean Service będzie tworzony od nowa dla każdej sesji.
+@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS) // zmiana  z singletonu na zasięg sesyjny
+
+//todo session scope works
+/*czyli teraz Bean Service będzie tworzony od nowa dla każdej sesji.
 czyli jak wejdziemy z innej przeglądarki, innego komputera to lista alertów jest tworzona od nowa
 zastosowanie np. system logowania - stan na sesję zalogowania; koszyk  w sklepie.
 */
